@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:status_alert/status_alert.dart';
 
 import 'quiz_brain.dart';
 
@@ -10,6 +11,7 @@ class Quizzler extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(
@@ -37,6 +39,13 @@ class _QuizPageState extends State<QuizPage> {
 
     setState(() {
       if (quizBrain.isHaveMoreQuestion() == false) {
+        StatusAlert.show(
+          context,
+          duration: Duration(seconds: 2),
+          title: 'Test Bitti!',
+          subtitle: ' ',
+          configuration: IconConfiguration(icon: Icons.done),
+        );
         scoreKeeper.clear();
       } else if (correctAnswer == userPickedAnswer) {
         scoreKeeper.add(Icon(
